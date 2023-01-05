@@ -1,0 +1,24 @@
+.sidenav-container {
+  color: var(--text);
+
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidenav-logo {
+  width: 30px;
+  height: 30px;
+
+  margin-top: 10px;
+}
+
+.sidenav-section-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}

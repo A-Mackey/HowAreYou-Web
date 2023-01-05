@@ -1,0 +1,38 @@
+.nav-button {
+  height: 40px;
+  width: 40px;
+
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  color: var(--text);
+  font-size: 1.75em;
+  font-weight: 400;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: background-color 0.2s ease-in-out;
+}
+
+.nav-button-primary {
+  background-color: var(--blue);
+  &:hover {
+    background-color: var(--blueLight);
+  }
+}
+
+.nav-button-secondary {
+  background-color: var(--primaryLight);
+  &:hover {
+    background-color: var(--primaryLighter);
+  }
+}
+
+.nav-button-icon {
+  height: 15px;
+  width: auto;
+}
