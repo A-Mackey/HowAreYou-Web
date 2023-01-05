@@ -7,9 +7,8 @@ import SideNav from "./components/sidenav";
 function App() {
   return (
     <div className="App">
-      <SideNav />
-
       <BrowserRouter>
+        <SideNav />
         <Routes>
           <Route path="/" element={<h1>INDEX</h1>} />
           <Route path="/stats" element={<h1>STATS</h1>} />
