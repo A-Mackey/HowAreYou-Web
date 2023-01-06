@@ -1,0 +1,40 @@
+.home-logged-in-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  //   background-color: black;
+}
+
+.home-logged-in-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.home-logged-in-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  border: 0;
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  background-color: var(--primaryLight);
+
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text);
+
+  padding: 0 30px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--primaryLighter);
+  }
+}

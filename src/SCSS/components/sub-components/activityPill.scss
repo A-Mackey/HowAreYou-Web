@@ -1,0 +1,22 @@
+.activity-pill-container {
+  height: 20px;
+  padding: 5px 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 0.8em;
+
+  border-radius: 15px;
+  border: 0;
+
+  cursor: pointer;
+  transition: background-color 0.2s;
+  background-color: var(--primaryLighter);
+  color: var(--text);
+
+  &:hover {
+    background-color: var(--primary);
+  }
+}

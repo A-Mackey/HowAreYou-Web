@@ -1,0 +1,36 @@
+.single-line-input-container {
+  height: 30px;
+
+  display: flex;
+}
+
+.single-line-input {
+  width: 150px;
+  height: 100%;
+
+  border: 0;
+  border-radius: 4px 0 0 4px;
+
+  background-color: var(--primary);
+  color: var(--text);
+
+  padding: 0 1px;
+  &:focus-visible {
+    outline: var(--primaryLighter) solid 1px;
+  }
+}
+
+.single-line-input-button {
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+
+  border: 0;
+
+  background-color: var(--primaryLighter);
+
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    background-color: var(--primaryLight);
+  }
+}
