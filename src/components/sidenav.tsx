@@ -15,14 +15,12 @@ function SideNav(_props: any) {
 
   return (
     <div className="sidenav-container">
-      {showModal ? (
+      {showModal && (
         <CreatePostModal
           closeModal={() => {
             setShowModal(false);
           }}
         />
-      ) : (
-        <></>
       )}
       <div className="sidenav-section-1">
         <img src="./icons/TempLogo.svg" alt="Logo" className="sidenav-logo" />

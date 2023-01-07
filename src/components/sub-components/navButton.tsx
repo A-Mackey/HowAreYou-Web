@@ -16,7 +16,7 @@ function Button(props: ButtonProps) {
       {props.icon ? (
         <img src={props.text} alt="Logo" className="nav-button-icon" />
       ) : (
-        <>{props.text}</>
+        <div>{props.text}</div>
       )}
     </button>
   );

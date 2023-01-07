@@ -14,13 +14,17 @@
 @import "./components/sub-components/singleLineInput.scss";
 @import "./components/sub-components/activityPill.scss";
 @import "./components/sub-components/goals.scss";
+@import "./components/sub-components/notificationBar.scss";
+
 :root {
   --primary: #1f2537;
   --primaryLight: #2e3a53;
   --primaryLighter: #545d75;
-  --text: #ffffff;
+  --text: rgba(232, 230, 227, 0.87);
+  --textDark: rgb(41, 41, 41);
   --red: #d04249;
   --green: #3aac9e;
+  --greenLight: #58baaf;
   --blue: #0d55f3;
   --blueLight: #2868f2;
 }
