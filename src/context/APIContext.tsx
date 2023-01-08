@@ -8,18 +8,21 @@ import {
 } from "firebase/firestore";
 import { createContext, useContext } from "react";
 import { UserAuth } from "./AuthContext";
-import { Post } from "./data/types";
+import { Post, User } from "./data/types";
+import { numToMonth } from "./modules/misc";
 
 type APIContextType = {
   submitPost: (post: Post) => Promise<boolean>;
-  numToMonth: (num: number) => string;
+  getUserData: () => Promise<User>;
 };
 
 const APIContext = createContext<APIContextType>({
   submitPost: async (post: Post): Promise<boolean> => {
     return false;
   },
-  numToMonth: (num: number) => "",
+  getUserData: async (): Promise<User> => {
+    return {};
+  },
 });
 
 export const APIContextProvider = ({ children }: { children: any }) => {
@@ -66,7 +69,6 @@ export const APIContextProvider = ({ children }: { children: any }) => {
         ...currentPostsForMonth,
       });
 
-      console.log("Updated object");
       return true;
     } catch (_err: any) {
       console.error("ERROR", _err);
@@ -74,39 +76,20 @@ export const APIContextProvider = ({ children }: { children: any }) => {
     }
   };
 
-  const numToMonth = (num: number) => {
-    switch (num) {
-      case 0:
-        return "January";
-      case 1:
-        return "February";
-      case 2:
-        return "March";
-      case 3:
-        return "April";
-      case 4:
-        return "May";
-      case 5:
-        return "June";
-      case 6:
-        return "July";
-      case 7:
-        return "August";
-      case 8:
-        return "September";
-      case 9:
-        return "October";
-      case 10:
-        return "November";
-      case 11:
-        return "December";
-      default:
-        return "January";
-    }
+  const getUserData = async (): Promise<User> => {
+    const db = getFirestore();
+    const library_user: DocumentReference<DocumentData> = doc(
+      db,
+      "library_users",
+      user.email
+    );
+
+    const database_user = (await getDoc(library_user)).data();
+    return database_user as User;
   };
 
   return (
-    <APIContext.Provider value={{ submitPost, numToMonth }}>
+    <APIContext.Provider value={{ submitPost, getUserData }}>
       {children}
     </APIContext.Provider>
   );

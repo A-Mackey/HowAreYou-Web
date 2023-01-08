@@ -1,0 +1,35 @@
+.goal-pill-completed {
+  height: 25px;
+  padding: 5px 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 0.8em;
+
+  border-radius: 4px;
+  border: 0;
+
+  transition: background-color 0.2s;
+  background-color: var(--greenTransparent);
+  color: var(--green);
+}
+
+.goal-pill-not-completed {
+  height: 25px;
+  padding: 5px 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 0.8em;
+
+  border-radius: 4px;
+  border: 0;
+
+  transition: background-color 0.2s;
+  background-color: var(--redTransparent);
+  color: var(--red);
+}

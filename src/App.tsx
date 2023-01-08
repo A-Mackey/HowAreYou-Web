@@ -12,7 +12,7 @@ function App() {
         <SideNav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/stats" element={<h1>STATS</h1>} />
+          <Route path="/profile" element={<h1>PROFILE</h1>} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -5,6 +5,8 @@ import Goals from "./sub-components/goals";
 import SingleLineInput from "./sub-components/singleLineInput";
 import { APIProvider } from "../context/APIContext";
 import NotificationBar from "./sub-components/notificationBar";
+import { v4 as uuidv4 } from "uuid";
+import { emotions } from "../context/modules/emotions";
 
 type CreatePostModalProps = {
   closeModal: () => void;
@@ -23,12 +25,6 @@ export function CreatePostModal(props: CreatePostModalProps) {
   const [posted, setPosted] = useState<boolean>(false);
 
   const { submitPost } = APIProvider();
-
-  const emotions = [
-    { name: "good", icon: "./icons/GoodEmoji.svg" },
-    { name: "alright", icon: "./icons/AlrightEmoji.svg" },
-    { name: "bad", icon: "./icons/BadEmoji.svg" },
-  ];
 
   const loadingText = "Loading";
   const successText = "Posted!";
@@ -58,6 +54,7 @@ export function CreatePostModal(props: CreatePostModalProps) {
 
     try {
       response = await submitPost({
+        id: uuidv4(),
         emotion: emotions[selectedEmotion].name,
         entry: description,
         activities: activities,
@@ -66,7 +63,7 @@ export function CreatePostModal(props: CreatePostModalProps) {
         }),
         day: new Date().getDate(),
         month: new Date().getMonth(),
-        year: new Date().getFullYear(),
+        year: new Date().getFullYear() - 3,
         timestamp: Date.now(),
       });
     } catch (_error: any) {

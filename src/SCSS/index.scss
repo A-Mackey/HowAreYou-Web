@@ -7,6 +7,7 @@
 @import "./components/sidenav.scss";
 @import "./components/homeLoggedIn.scss";
 @import "./components/createPostModal.scss";
+@import "./components/postTile.scss";
 
 // Sub-components
 @import "./components/sub-components/navButton.scss";
@@ -15,6 +16,7 @@
 @import "./components/sub-components/activityPill.scss";
 @import "./components/sub-components/goals.scss";
 @import "./components/sub-components/notificationBar.scss";
+@import "./components/sub-components/goalPill.scss";
 
 :root {
   --primary: #1f2537;
@@ -23,8 +25,10 @@
   --text: rgba(232, 230, 227, 0.87);
   --textDark: rgb(41, 41, 41);
   --red: #d04249;
+  --redTransparent: #d0424980;
   --green: #3aac9e;
-  --greenLight: #58baaf;
+  --greenTransparent: #3aac9e80;
+  --greenLight: #5bcabd;
   --blue: #0d55f3;
   --blueLight: #2868f2;
 }

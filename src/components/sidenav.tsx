@@ -7,7 +7,7 @@ import CreatePostModal from "./createPostModal";
 function SideNav(_props: any) {
   const { user, googleSignIn, logOut } = UserAuth();
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState<boolean>(true);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("USER", user);
@@ -46,9 +46,9 @@ function SideNav(_props: any) {
         />
 
         <Button
-          text="./icons/ArrowIcon.svg"
+          text="./icons/User.svg"
           onClick={() => {
-            navigate("/stats");
+            navigate("/profile");
           }}
           primary={false}
           icon={true}

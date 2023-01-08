@@ -1,0 +1,46 @@
+.post-tile-container {
+  width: 100%;
+}
+
+.post-tile-body {
+  background-color: var(--primaryLight);
+
+  display: flex;
+  padding: 20px;
+}
+
+.post-tile-emotion-image {
+  width: 100px;
+  height: 100px;
+}
+
+.post-tile-content {
+  width: 100%;
+  margin-left: 40px;
+}
+
+.post-tile-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-tile-content-header {
+}
+
+.post-tile-activities {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-tile-goals {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}

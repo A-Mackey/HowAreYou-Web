@@ -4,6 +4,7 @@ export type Goal = {
 };
 
 export type Post = {
+  id: string;
   activities: string[];
   emotion: string;
   entry: string;
@@ -12,4 +13,12 @@ export type Post = {
   month: number;
   year: number;
   timestamp: number;
+};
+
+export type User = {
+  email?: string;
+  email_newsletter?: boolean;
+  firstName?: string;
+  lastName?: string;
+  posts?: any;
 };

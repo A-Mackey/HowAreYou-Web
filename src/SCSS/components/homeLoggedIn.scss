@@ -1,6 +1,6 @@
 .home-logged-in-container {
   width: 100%;
-  height: 100%;
+
   display: flex;
   flex-direction: column;
 
@@ -9,8 +9,24 @@
 
 .home-logged-in-header {
   width: 100%;
+  height: 50px;
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
+}
+
+.home-logged-in-body {
+  width: 100%;
+
+  height: 100;
+  max-height: calc(100vh - 50px - 20px - 20px);
+
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
   margin-top: 20px;
 }
 
