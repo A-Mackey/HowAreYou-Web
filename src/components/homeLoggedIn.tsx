@@ -4,23 +4,27 @@ import { useEffect, useState } from "react";
 import { Post } from "../context/data/types";
 import PostTile from "./postTile";
 import { numToMonth } from "../context/modules/misc";
+import Goals from "./sub-components/goals";
 
 function HomeLoggedIn(_props: any) {
   const { user, logOut } = UserAuth();
-  const { getUserData } = APIProvider();
+  const { getUserData, getUserGoals, setUserGoals } = APIProvider();
 
   const [userData, setUserData] = useState<any>(null);
   const [posts, setPosts] = useState<Post[]>([]);
+  const [goals, setGoals] = useState<string[]>([
+    "Some super long sentence that has a lot of words and break points",
+
+    "Short",
+  ]);
+  const [selectedGoals, setSelectedGoals] = useState<boolean[]>([]);
 
   const yearStop = 2019;
 
   useEffect(() => {
     populateUserData();
+    populateGoals();
   }, []);
-
-  useEffect(() => {
-    console.log("Posts have changed", posts);
-  }, [posts]);
 
   const populateUserData = async () => {
     const data = await getUserData();
@@ -42,7 +46,6 @@ function HomeLoggedIn(_props: any) {
 
       const key = month + " " + currentYear;
       if (key in user_posts) {
-        console.log(key);
         const postsForMonth = user_posts[key] as Post[];
         const sorted = [
           ...postsForMonth.sort((a, b) => {
@@ -50,14 +53,10 @@ function HomeLoggedIn(_props: any) {
           }),
         ];
 
-        console.log("Prior to combining", posts);
         const combined = [...all_posts, ...sorted];
-        console.log("Combined ", combined);
         const unique = combined.filter(
           (element, i) => i === combined.indexOf(element)
         );
-
-        console.log("unique ", unique);
 
         all_posts = unique;
       }
@@ -66,23 +65,45 @@ function HomeLoggedIn(_props: any) {
     setPosts(all_posts);
   };
 
+  const toggleGoal = (index: number) => {
+    const newSelectedGoals = [...selectedGoals];
+    newSelectedGoals[index] = !newSelectedGoals[index];
+    setSelectedGoals(newSelectedGoals);
+  };
+
+  const populateGoals = async () => {
+    const goals = await getUserGoals();
+    setGoals(goals);
+    console.log("GOALS", goals);
+  };
+
   return (
     <div className="home-logged-in-container">
-      <div className="home-logged-in-header">
-        <h1 className="home-logged-in-title">
-          How are you{userData ? `, ${userData.firstName}` : ""}?
-        </h1>
-        <button onClick={() => logOut()} className="home-logged-in-button">
-          Log Out
-        </button>
+      <div className="home-logged-in-header-posts">
+        <div className="home-logged-in-header">
+          <h1 className="home-logged-in-title">
+            How are you{userData ? `, ${userData.firstName}` : ""}?
+          </h1>
+          <button onClick={() => logOut()} className="home-logged-in-button">
+            Log Out
+          </button>
+        </div>
+
+        <div className="home-logged-in-body">
+          {posts.map((post: Post, index: number) => (
+            <div key={index}>
+              <PostTile postData={post} />
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="home-logged-in-body">
-        {posts.map((post: Post, index: number) => (
-          <div key={index}>
-            <PostTile postData={post} />
-          </div>
-        ))}
+      <div className="home-logged-in-goals-container">
+        <div className="home-logged-in-goals-header">
+          <h3>Daily Goals</h3>
+          <button className="home-logged-in-goal-add-button">+ Goal</button>
+        </div>
+        <Goals goals={goals} selected={selectedGoals} onClick={toggleGoal} />
       </div>
     </div>
   );

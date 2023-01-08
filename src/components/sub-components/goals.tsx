@@ -14,16 +14,18 @@ function Goals(props: GoalsProps) {
             onClick={() => {
               if (props.onClick !== undefined) props.onClick(index);
             }}>
-            <div
-              className={
-                props.selected !== undefined
-                  ? props.selected[index]
-                    ? "goal-bullet-filled"
+            <div className="goal-left">
+              <div
+                className={
+                  props.selected !== undefined
+                    ? props.selected[index]
+                      ? "goal-bullet-filled"
+                      : "goal-bullet"
                     : "goal-bullet"
-                  : "goal-bullet"
-              }
-            />
-            <div>{goal}</div>
+                }
+              />
+            </div>
+            <div className="goal-goal">{goal}</div>
           </button>
         </div>
       ))}

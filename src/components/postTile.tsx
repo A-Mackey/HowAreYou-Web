@@ -24,11 +24,13 @@ function PostTile(props: PostTileProps) {
   return (
     <div className="post-tile-container">
       <div className="post-tile-body">
-        <img
-          src={getImageFromEmotion(props.postData.emotion)}
-          alt="Logo"
-          className="post-tile-emotion-image"
-        />
+        <div className="post-tile-emotion-image-container">
+          <img
+            src={getImageFromEmotion(props.postData.emotion)}
+            alt="Logo"
+            className="post-tile-emotion-image"
+          />
+        </div>
         <div className="post-tile-content">
           <div className="post-tile-header">
             <h1>
@@ -56,8 +58,8 @@ function PostTile(props: PostTileProps) {
           </div>
 
           <div className="post-tile-goals">
-            {props.postData.goals.map((goal: Goal, index) => (
-              <GoalPill goal={goal} />
+            {props.postData.goals.map((goal: Goal, index: number) => (
+              <GoalPill goal={goal} key={index} />
             ))}
           </div>
         </div>

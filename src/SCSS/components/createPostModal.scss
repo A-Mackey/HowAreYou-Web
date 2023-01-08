@@ -23,6 +23,10 @@
   background-color: var(--primaryLight);
   border-radius: 4px;
   z-index: 1;
+
+  @media screen and (max-width: 600px) {
+    padding: 0px 20px;
+  }
 }
 
 .modal-section-1 {

@@ -6,12 +6,12 @@ type GoalPillProps = {
 
 function GoalPill(props: GoalPillProps) {
   return (
-    <button
+    <div
       className={
         props.goal.completed ? "goal-pill-completed" : "goal-pill-not-completed"
       }>
       {props.goal.goal}
-    </button>
+    </div>
   );
 }
 

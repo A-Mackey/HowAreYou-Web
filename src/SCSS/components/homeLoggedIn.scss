@@ -1,24 +1,25 @@
 .home-logged-in-container {
   width: 100%;
-
   display: flex;
-  flex-direction: column;
-
-  //   background-color: black;
 }
 
 .home-logged-in-header {
   width: 100%;
-  height: 50px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  align-items: center;
+  // margin-top: 20px;
+
+  @media screen and (max-width: 600px) {
+    height: 100px;
+  }
 }
 
 .home-logged-in-body {
   width: 100%;
 
-  height: 100;
+  height: 100%;
   max-height: calc(100vh - 50px - 20px - 20px);
 
   overflow-y: scroll;
@@ -27,10 +28,13 @@
   flex-direction: column;
   gap: 20px;
 
-  margin-top: 20px;
+  @media screen and (max-width: 600px) {
+    // max-height: calc(100vh - 100px - 20px - 20px);
+  }
 }
 
 .home-logged-in-button {
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,5 +56,38 @@
 
   &:hover {
     background-color: var(--primaryLighter);
+  }
+}
+
+.home-logged-in-goals-container {
+  width: 300px;
+
+  margin-left: 20px;
+}
+
+.home-logged-in-goals-header {
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-logged-in-goal-add-button {
+  padding: 5px 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--primaryLighter);
+
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    background-color: var(--primaryLight);
   }
 }

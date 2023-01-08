@@ -14,6 +14,8 @@ import { numToMonth } from "./modules/misc";
 type APIContextType = {
   submitPost: (post: Post) => Promise<boolean>;
   getUserData: () => Promise<User>;
+  getUserGoals: () => Promise<string[]>;
+  setUserGoals: (goals: string[]) => Promise<boolean>;
 };
 
 const APIContext = createContext<APIContextType>({
@@ -22,6 +24,12 @@ const APIContext = createContext<APIContextType>({
   },
   getUserData: async (): Promise<User> => {
     return {};
+  },
+  getUserGoals: async (): Promise<string[]> => {
+    return [];
+  },
+  setUserGoals: async (goals: string[]): Promise<boolean> => {
+    return false;
   },
 });
 
@@ -48,7 +56,6 @@ export const APIContextProvider = ({ children }: { children: any }) => {
         return false;
       }
 
-      console.log(currentPostsForMonth?.posts);
       if (currentPostsForMonth?.posts === undefined) {
         currentPostsForMonth = {
           ...currentPostsForMonth,
@@ -77,6 +84,7 @@ export const APIContextProvider = ({ children }: { children: any }) => {
   };
 
   const getUserData = async (): Promise<User> => {
+    if (user === null) return Promise.reject("User is null");
     const db = getFirestore();
     const library_user: DocumentReference<DocumentData> = doc(
       db,
@@ -88,8 +96,47 @@ export const APIContextProvider = ({ children }: { children: any }) => {
     return database_user as User;
   };
 
+  const getUserGoals = async (): Promise<string[]> => {
+    const userData = await getUserData();
+    const goals = userData?.goals;
+
+    if (goals === undefined) {
+      return [];
+    } else {
+      return goals;
+    }
+  };
+
+  const setUserGoals = async (goals: string[]): Promise<boolean> => {
+    const db = getFirestore();
+
+    const library_user: DocumentReference<DocumentData> = doc(
+      db,
+      "library_users",
+      user.email
+    );
+
+    try {
+      const database_user = (await getDoc(library_user)).data();
+      const updated_user = {
+        ...database_user,
+        goals: goals,
+      };
+
+      await updateDoc(library_user, {
+        ...updated_user,
+      });
+    } catch (_err: any) {
+      console.error("ERROR", _err);
+      return false;
+    }
+
+    return true;
+  };
+
   return (
-    <APIContext.Provider value={{ submitPost, getUserData }}>
+    <APIContext.Provider
+      value={{ submitPost, getUserData, getUserGoals, setUserGoals }}>
       {children}
     </APIContext.Provider>
   );
