@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  howareyou:
+    container_name: howareyou-web-c
+    image: howareyou-web-i
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:3000

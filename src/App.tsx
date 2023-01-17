@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import SideNav from "./components/sidenav";
 import Home from "./pages/home";
+import Profile from "./pages/profile";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <SideNav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<h1>PROFILE</h1>} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>
