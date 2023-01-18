@@ -5,10 +5,13 @@ import { Post } from "../context/data/types";
 import PostTile from "./postTile";
 import { numToMonth } from "../context/modules/misc";
 import Goals from "./sub-components/goals";
+import Loading from "./sub-components/loading";
 
 function HomeLoggedIn(_props: any) {
   const { user, logOut } = UserAuth();
   const { getUserData, getUserGoals, setUserGoals } = APIProvider();
+
+  const [loading, setLoading] = useState<boolean>(true);
 
   const [userData, setUserData] = useState<any>(null);
   const [posts, setPosts] = useState<Post[]>([]);
@@ -27,6 +30,8 @@ function HomeLoggedIn(_props: any) {
   }, []);
 
   const populateUserData = async () => {
+    setLoading(true);
+
     const data = await getUserData();
     setUserData(data);
     const user_posts = data.posts;
@@ -63,6 +68,8 @@ function HomeLoggedIn(_props: any) {
     }
 
     setPosts(all_posts);
+
+    setLoading(false);
   };
 
   const toggleGoal = (index: number) => {
@@ -90,11 +97,15 @@ function HomeLoggedIn(_props: any) {
         </div>
 
         <div className="home-logged-in-body">
-          {posts.map((post: Post, index: number) => (
-            <div key={index}>
-              <PostTile postData={post} />
-            </div>
-          ))}
+          {loading ? (
+            <Loading />
+          ) : (
+            posts.map((post: Post, index: number) => (
+              <div key={index}>
+                <PostTile postData={post} />
+              </div>
+            ))
+          )}
         </div>
       </div>
 
