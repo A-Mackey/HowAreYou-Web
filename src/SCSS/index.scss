@@ -43,6 +43,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-color: var(--primary);
+  overscroll-behavior-y: none;
 
   padding: env(safe-area-inset-top) env(safe-area-inset-right)
     env(safe-area-inset-bottom) env(safe-area-inset-left);
