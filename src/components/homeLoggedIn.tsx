@@ -6,6 +6,7 @@ import PostTile from "./postTile";
 import { numToMonth } from "../context/modules/misc";
 import Goals from "./sub-components/goals";
 import Loading from "./sub-components/loading";
+import GoalsDrawer from "./sub-components/goalsDrawer";
 
 function HomeLoggedIn(_props: any) {
   const { user, logOut } = UserAuth();
@@ -109,13 +110,12 @@ function HomeLoggedIn(_props: any) {
         </div>
       </div>
 
-      <div className="home-logged-in-goals-container">
-        <div className="home-logged-in-goals-header">
+      {/* <div className="home-logged-in-goals-header">
           <h3>Daily Goals</h3>
           <button className="home-logged-in-goal-add-button">+ Goal</button>
-        </div>
-        <Goals goals={goals} selected={selectedGoals} onClick={toggleGoal} />
-      </div>
+        </div> */}
+      {/* <Goals goals={goals} selected={selectedGoals} onClick={toggleGoal} /> */}
+      <GoalsDrawer />
     </div>
   );
 }

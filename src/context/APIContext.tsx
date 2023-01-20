@@ -14,6 +14,7 @@ import { numToMonth } from "./modules/misc";
 type APIContextType = {
   submitPost: (post: Post) => Promise<boolean>;
   getUserData: () => Promise<User>;
+
   getUserGoals: () => Promise<string[]>;
   setUserGoals: (goals: string[]) => Promise<boolean>;
 };
@@ -25,6 +26,7 @@ const APIContext = createContext<APIContextType>({
   getUserData: async (): Promise<User> => {
     return {};
   },
+
   getUserGoals: async (): Promise<string[]> => {
     return [];
   },
@@ -136,7 +138,12 @@ export const APIContextProvider = ({ children }: { children: any }) => {
 
   return (
     <APIContext.Provider
-      value={{ submitPost, getUserData, getUserGoals, setUserGoals }}>
+      value={{
+        submitPost,
+        getUserData,
+        getUserGoals,
+        setUserGoals,
+      }}>
       {children}
     </APIContext.Provider>
   );
