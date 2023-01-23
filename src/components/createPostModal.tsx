@@ -7,6 +7,7 @@ import { APIProvider } from "../context/APIContext";
 import NotificationBar from "./sub-components/notificationBar";
 import { v4 as uuidv4 } from "uuid";
 import { emotions } from "../context/modules/emotions";
+import { Menu, MenuItem } from "@mui/material";
 
 type CreatePostModalProps = {
   closeModal: () => void;
@@ -17,18 +18,30 @@ export function CreatePostModal(props: CreatePostModalProps) {
   const [description, setDescription] = useState<string>("");
   const [activity, setActivity] = useState<string>("");
   const [activities, setActivities] = useState<string[]>([]);
-  const [goals, setGoals] = useState<string[]>(["Yeet", "Yote", "Yote"]);
+  const [goals, setGoals] = useState<string[]>([]);
   const [selectedGoals, setSelectedGoals] = useState<boolean[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [successfulPost, setSuccssfulPost] = useState<boolean>(false);
   const [posted, setPosted] = useState<boolean>(false);
 
-  const { submitPost } = APIProvider();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const emojiMenuOpen = Boolean(anchorEl);
+
+  const { submitPost, getUserGoals } = APIProvider();
 
   const loadingText = "Loading";
   const successText = "Posted!";
   const failureText = "Something happened, are you missing parameters?";
+
+  useEffect(() => {
+    const getGoals = async () => {
+      const goals = await getUserGoals();
+      setGoals(goals);
+    };
+
+    getGoals();
+  }, []);
 
   useEffect(() => {
     setSelectedGoals(goals.map(() => false));
@@ -63,7 +76,7 @@ export function CreatePostModal(props: CreatePostModalProps) {
         }),
         day: new Date().getDate(),
         month: new Date().getMonth(),
-        year: new Date().getFullYear() - 3,
+        year: new Date().getFullYear(),
         timestamp: Date.now(),
       });
     } catch (_error: any) {
@@ -95,6 +108,14 @@ export function CreatePostModal(props: CreatePostModalProps) {
     );
   };
 
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className="modal-container" onClick={() => {}}>
       <div className="modal-body">
@@ -112,7 +133,7 @@ export function CreatePostModal(props: CreatePostModalProps) {
           </div>
           <div className="modal-section-1-emotions">
             {emotions.map((emotion, index: number) => {
-              return (
+              return index < 3 ? (
                 <EmotionButton
                   onClick={() => setSelectedEmotion(index)}
                   icon={emotion.icon}
@@ -120,10 +141,42 @@ export function CreatePostModal(props: CreatePostModalProps) {
                   selected={selectedEmotion === index}
                   key={index}
                 />
+              ) : (
+                index === 4 && (
+                  <button
+                    onClick={handleClick}
+                    className="modal-section-1-emotions-more-button">
+                    <img
+                      src="./icons/trippleDots.svg"
+                      alt="More"
+                      className="modal-section-1-emotions-more-buttom-image"
+                    />
+                  </button>
+                )
               );
             })}
           </div>
         </div>
+
+        <Menu
+          open={emojiMenuOpen}
+          anchorEl={anchorEl}
+          classes={{ paper: "modal-menu" }}>
+          {emotions.map((emotion, index: number) => (
+            <MenuItem>
+              <EmotionButton
+                onClick={() => {
+                  setSelectedEmotion(index);
+                  handleClose();
+                }}
+                icon={emotion.icon}
+                alt={emotion.name}
+                selected={selectedEmotion === index}
+                key={index}
+              />
+            </MenuItem>
+          ))}
+        </Menu>
 
         <div className="modal-section-2">
           <h2>What's on your mind?</h2>

@@ -4,6 +4,7 @@ import {
   DocumentReference,
   getDoc,
   getFirestore,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { createContext, useContext } from "react";
@@ -14,9 +15,12 @@ import { numToMonth } from "./modules/misc";
 type APIContextType = {
   submitPost: (post: Post) => Promise<boolean>;
   getUserData: () => Promise<User>;
+  getBasicUserData: () => Promise<User>;
 
   getUserGoals: () => Promise<string[]>;
   setUserGoals: (goals: string[]) => Promise<boolean>;
+
+  upsertUserData: (data: Object) => Promise<boolean>;
 };
 
 const APIContext = createContext<APIContextType>({
@@ -26,11 +30,18 @@ const APIContext = createContext<APIContextType>({
   getUserData: async (): Promise<User> => {
     return {};
   },
+  getBasicUserData: async (): Promise<User> => {
+    return {};
+  },
 
   getUserGoals: async (): Promise<string[]> => {
     return [];
   },
   setUserGoals: async (goals: string[]): Promise<boolean> => {
+    return false;
+  },
+
+  upsertUserData: async (data: Object): Promise<boolean> => {
     return false;
   },
 });
@@ -98,6 +109,25 @@ export const APIContextProvider = ({ children }: { children: any }) => {
     return database_user as User;
   };
 
+  /// TODO: Edit to only grab the necessary data, not posts or goals
+  const getBasicUserData = async (): Promise<User> => {
+    if (user === null) return Promise.reject("User is null");
+    const db = getFirestore();
+    const library_user: DocumentReference<DocumentData> = doc(
+      db,
+      "library_users",
+      user.email
+    );
+
+    const database_user = (await getDoc(library_user)).data();
+    return {
+      firstName: database_user?.firstName,
+      lastName: database_user?.lastName,
+      email: database_user?.email,
+      posts: database_user?.posts,
+    } as User;
+  };
+
   const getUserGoals = async (): Promise<string[]> => {
     const userData = await getUserData();
     const goals = userData?.goals;
@@ -136,13 +166,29 @@ export const APIContextProvider = ({ children }: { children: any }) => {
     return true;
   };
 
+  const upsertUserData = async (data: Object): Promise<boolean> => {
+    const db = getFirestore();
+
+    const library_user: DocumentReference<DocumentData> = doc(
+      db,
+      "library_users",
+      user.email
+    );
+
+    setDoc(library_user, data, { merge: true });
+
+    return true;
+  };
+
   return (
     <APIContext.Provider
       value={{
         submitPost,
         getUserData,
+        getBasicUserData,
         getUserGoals,
         setUserGoals,
+        upsertUserData,
       }}>
       {children}
     </APIContext.Provider>

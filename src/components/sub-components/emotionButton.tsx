@@ -2,7 +2,7 @@ type EmotionButtonProps = {
   icon: string;
   alt: string;
   onClick: () => void;
-  selected: boolean;
+  selected?: boolean;
 };
 
 function EmotionButton(props: EmotionButtonProps) {

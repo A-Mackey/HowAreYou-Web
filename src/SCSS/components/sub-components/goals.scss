@@ -87,18 +87,22 @@
   border-radius: 50%;
   border: 3px solid var(--primaryLighter);
   background-color: var(--primaryLighter);
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .goal-add-button {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 
   margin-left: 5px;
 
   padding: 0;
   border: 0;
   border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   font-size: 1.8em;
   font-weight: 300;

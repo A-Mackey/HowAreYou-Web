@@ -14,9 +14,6 @@ function PostTile(props: PostTileProps) {
 
   useEffect(() => {
     const date = new Date(props.postData.timestamp);
-    // console.log(
-    //   date.getDay() + " " + date.getMonth() + " " + date.getFullYear()
-    // );
     const day = date.getDay();
     setDayOfTheWeek(getDayOfWeek(day));
   }, []);
