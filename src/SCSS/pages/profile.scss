@@ -2,6 +2,8 @@
   width: 100%;
   max-height: 100vh;
 
+  overflow-y: scroll;
+
   display: flex;
   justify-content: center;
 }
@@ -44,4 +46,74 @@
 .profile-content {
   width: 100%;
   display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 40px;
+}
+
+.profile-content-inputs {
+  width: 60%;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+.profile-input-with-header {
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.profile-input {
+  width: 200px;
+  height: 40px;
+
+  border-radius: 4px;
+  border: 0;
+  padding: 0 10px;
+
+  background-color: var(--primaryLighter);
+  color: var(--text);
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+
+  border-radius: 50%;
+  border: 0;
+
+  background-color: var(--primaryLighter);
+  color: var(--text);
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.profile-goals-section {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+
+  margin: 40px 0 40px 0;
+}
+
+.profile-goals {
+  width: 100%;
+  max-width: 500px;
+}
+
+.profile-goals-container {
+  width: 100%;
 }

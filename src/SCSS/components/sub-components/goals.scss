@@ -11,19 +11,20 @@
 
 .goal-row {
   width: 100%;
-  //   height: 30px;
+  min-height: 40px;
   text-align: left;
 
   display: flex;
   align-items: center;
   flex-direction: row;
+  justify-content: space-between;
   gap: 20px;
 
   padding: 0;
   margin: 0;
   border: 0;
 
-  border-radius: 15px;
+  border-radius: 20px;
   cursor: pointer;
 
   color: var(--text);
@@ -39,6 +40,34 @@
   padding: 5px 0;
 }
 
+.goal-center {
+  width: 100%;
+}
+
+.goal-remove-button {
+  width: 35px;
+  height: 35px;
+
+  margin-right: 5px;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  font-size: 1.8em;
+  font-weight: 300;
+  color: var(--text);
+
+  cursor: pointer;
+
+  transition: 0.2s background-color;
+  background-color: var(--primaryLight);
+
+  &:hover {
+    background-color: var(--primaryLighter);
+  }
+}
+
 .goal-goal {
   padding: 5px 0;
 }
@@ -49,7 +78,7 @@
   border-radius: 50%;
   border: 3px solid var(--primaryLighter);
   background-color: transparent;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .goal-bullet-filled {
@@ -59,4 +88,54 @@
   border: 3px solid var(--primaryLighter);
   background-color: var(--primaryLighter);
   margin-left: 5px;
+}
+
+.goal-add-button {
+  width: 35px;
+  height: 35px;
+
+  margin-left: 5px;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  font-size: 1.8em;
+  font-weight: 300;
+  color: var(--text);
+
+  cursor: pointer;
+
+  transition: 0.2s background-color;
+  background-color: var(--blue);
+
+  &:hover {
+    background-color: var(--blueLight);
+  }
+}
+
+.goal-add-section {
+  display: flex;
+  height: 40px;
+  margin: 10px 0;
+  align-items: center;
+  border-radius: 20px;
+
+  background-color: var(--primaryLight);
+}
+
+.goal-input {
+  width: calc(100% - 40px);
+  height: 30px;
+  border-radius: 15px;
+  border: 0;
+  padding: 0 10px;
+  background-color: transparent;
+  color: var(--text);
+  font-size: 1.2em;
+  font-weight: 500;
+
+  &:focus-visible {
+    outline: 0;
+  }
 }
