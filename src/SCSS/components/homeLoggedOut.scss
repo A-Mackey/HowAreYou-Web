@@ -1,0 +1,50 @@
+.home-logged-out-container {
+  width: calc(100vw - 50px);
+  height: 100%;
+}
+
+.home-logged-out-body {
+  display: flex;
+  height: 100%;
+}
+
+.home-logged-out-signin {
+  margin-top: 40px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 40px;
+}
+
+.home-logged-out-left {
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 1070px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.home-logged-out-title {
+  max-width: 400px;
+  text-align: center;
+
+  @media screen and (max-width: 1070px) {
+    font-size: 1.25em;
+  }
+}
+
+.home-logged-out-right {
+  height: 100vh;
+  width: 50%;
+  object-fit: cover;
+}

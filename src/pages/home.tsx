@@ -1,4 +1,5 @@
 import HomeLoggedIn from "../components/homeLoggedIn";
+import HomeLoggedOut from "../components/homeLoggedOut";
 import { UserAuth } from "../context/AuthContext";
 
 export default function Home() {
@@ -7,7 +8,7 @@ export default function Home() {
   return (
     <div className="home-wrapper">
       <div className="home-body">
-        {user !== null ? <HomeLoggedIn /> : <h1>Welcome to the home page</h1>}
+        {user !== null ? <HomeLoggedIn /> : <HomeLoggedOut />}
       </div>
     </div>
   );

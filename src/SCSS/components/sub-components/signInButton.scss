@@ -1,0 +1,37 @@
+.sign-in-button-container {
+  width: 200px;
+  height: 40px;
+}
+
+.signin-button-body {
+  height: 100%;
+  width: 100%;
+
+  color: var(--text);
+
+  border-radius: 20px;
+  border: 0 solid transparent;
+
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  cursor: pointer;
+  padding: 2.5px;
+
+  display: flex;
+  align-items: center;
+}
+
+.sign-in-button-image {
+  width: 25px;
+  height: 25px;
+  margin: 0 10px 0 0;
+
+  background-color: white;
+  padding: 5px;
+
+  border-radius: 20px;
+  border: 0;
+  border-color: transparent;
+  border-style: solid;
+}

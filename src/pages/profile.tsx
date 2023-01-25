@@ -98,9 +98,9 @@ function Profile(_props: any) {
               <h3>Recieve Newsletter</h3>
               <div className="profile-switch">
                 <Switch
-                  value={newsletter}
-                  onChange={(n) => setNewsletter(n.target.checked)}
                   checked={newsletter}
+                  onChange={(n) => setNewsletter(n.target.checked)}
+                  size="medium"
                 />
               </div>
             </div>

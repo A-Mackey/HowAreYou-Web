@@ -18,7 +18,6 @@ function Goals(props: GoalsProps) {
   const [addedGoal, setAddedGoal] = useState<string>("");
 
   useEffect(() => {
-    console.log("Mounted Goals");
     hydrateGoals();
   }, []);
 
@@ -32,7 +31,7 @@ function Goals(props: GoalsProps) {
   };
 
   const removeGoal = (index: number) => {
-    const newGoals = goals.filter((goal, i) => i !== index);
+    const newGoals = goals.filter((_goal, i) => i !== index);
     setUserGoals(newGoals);
     setGoals(newGoals);
   };

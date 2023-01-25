@@ -82,7 +82,6 @@ function HomeLoggedIn(_props: any) {
   const populateGoals = async () => {
     const goals = await getUserGoals();
     setGoals(goals);
-    console.log("GOALS", goals);
   };
 
   return (

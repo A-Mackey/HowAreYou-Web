@@ -7,6 +7,7 @@
 // Components
 @import "./components/sidenav.scss";
 @import "./components/homeLoggedIn.scss";
+@import "./components/homeLoggedOut.scss";
 @import "./components/createPostModal.scss";
 @import "./components/postTile.scss";
 
@@ -20,6 +21,7 @@
 @import "./components/sub-components/goalPill.scss";
 @import "./components/sub-components/loading.scss";
 @import "./components/sub-components/goalsDrawer.scss";
+@import "./components/sub-components/signInButton.scss";
 
 :root {
   --primary: #1f2537;
