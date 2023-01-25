@@ -1,6 +1,6 @@
 type NotifcationBarProps = {
   text: string;
-  color: number;
+  type: "success" | "failure" | "loading";
 };
 
 function NotificationBar(props: NotifcationBarProps) {
@@ -8,9 +8,9 @@ function NotificationBar(props: NotifcationBarProps) {
     <div
       className={
         "notification-bar-container" +
-        (props.color === -1 ? " notification-bar-failure" : "") +
-        (props.color === 0 ? " notification-bar-loading" : "") +
-        (props.color === 1 ? " notification-bar-success" : "")
+        (props.type === "failure" ? " notification-bar-failure" : "") +
+        (props.type === "loading" ? " notification-bar-loading" : "") +
+        (props.type === "success" ? " notification-bar-success" : "")
       }>
       <div>{props.text}</div>
     </div>

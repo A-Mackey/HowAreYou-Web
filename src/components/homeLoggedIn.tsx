@@ -4,24 +4,18 @@ import { useEffect, useState } from "react";
 import { Post } from "../context/data/types";
 import PostTile from "./postTile";
 import { numToMonth } from "../context/modules/misc";
-import Goals from "./sub-components/goals";
 import Loading from "./sub-components/loading";
 import GoalsDrawer from "./sub-components/goalsDrawer";
 
 function HomeLoggedIn(_props: any) {
-  const { user, logOut } = UserAuth();
-  const { getUserData, getUserGoals, setUserGoals } = APIProvider();
+  const { logOut } = UserAuth();
+  const { getUserData, getUserGoals } = APIProvider();
 
   const [loading, setLoading] = useState<boolean>(true);
 
   const [userData, setUserData] = useState<any>(null);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [goals, setGoals] = useState<string[]>([
-    "Some super long sentence that has a lot of words and break points",
-
-    "Short",
-  ]);
-  const [selectedGoals, setSelectedGoals] = useState<boolean[]>([]);
+  const [goals, setGoals] = useState<string[]>([]);
 
   const yearStop = 2019;
 
@@ -35,8 +29,14 @@ function HomeLoggedIn(_props: any) {
 
     const data = await getUserData();
     setUserData(data);
-    const user_posts = data.posts;
+    const user_posts = data?.posts;
     let all_posts: Post[] = [];
+
+    if (user_posts === undefined) {
+      setPosts([]);
+      setLoading(false);
+      return;
+    }
 
     for (
       let i = new Date().getMonth(), currentYear = new Date().getFullYear();
@@ -73,12 +73,6 @@ function HomeLoggedIn(_props: any) {
     setLoading(false);
   };
 
-  const toggleGoal = (index: number) => {
-    const newSelectedGoals = [...selectedGoals];
-    newSelectedGoals[index] = !newSelectedGoals[index];
-    setSelectedGoals(newSelectedGoals);
-  };
-
   const populateGoals = async () => {
     const goals = await getUserGoals();
     setGoals(goals);
@@ -89,7 +83,7 @@ function HomeLoggedIn(_props: any) {
       <div className="home-logged-in-header-posts">
         <div className="home-logged-in-header">
           <h1 className="home-logged-in-title">
-            How are you{userData ? `, ${userData.firstName}` : ""}?
+            How are you{userData?.firstName ? `, ${userData.firstName}` : ""}?
           </h1>
           <button onClick={() => logOut()} className="home-logged-in-button">
             Log Out
@@ -99,6 +93,11 @@ function HomeLoggedIn(_props: any) {
         <div className="home-logged-in-body">
           {loading ? (
             <Loading />
+          ) : posts.length === 0 ? (
+            <h3>
+              No posts found 😩, create your first post using the + button in
+              the left navigation!
+            </h3>
           ) : (
             posts.map((post: Post, index: number) => (
               <div key={index}>
@@ -109,11 +108,6 @@ function HomeLoggedIn(_props: any) {
         </div>
       </div>
 
-      {/* <div className="home-logged-in-goals-header">
-          <h3>Daily Goals</h3>
-          <button className="home-logged-in-goal-add-button">+ Goal</button>
-        </div> */}
-      {/* <Goals goals={goals} selected={selectedGoals} onClick={toggleGoal} /> */}
       <GoalsDrawer />
     </div>
   );

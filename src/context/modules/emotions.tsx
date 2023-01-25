@@ -2,6 +2,14 @@ export function getImageFromEmotion(emotion: string) {
   return `./icons/Emojis/${emotion}Emoji.svg`;
 }
 
+export function getRandomEmotion() {
+  return emotions[Math.floor(Math.random() * emotions.length)];
+}
+
+export function getRandomGoodEmotion() {
+  return goodEmotions[Math.floor(Math.random() * goodEmotions.length)];
+}
+
 export const emotions = [
   { name: "good", icon: "./icons/Emojis/goodEmoji.svg" },
   { name: "alright", icon: "./icons/Emojis/alrightEmoji.svg" },
@@ -13,4 +21,9 @@ export const emotions = [
   { name: "sick", icon: "./icons/Emojis/sickEmoji.svg" },
   { name: "tired", icon: "./icons/Emojis/tiredEmoji.svg" },
   { name: "worried", icon: "./icons/Emojis/worriedEmoji.svg" },
+];
+
+export const goodEmotions = [
+  { name: "good", icon: "./icons/Emojis/goodEmoji.svg" },
+  { name: "peaceful", icon: "./icons/Emojis/peacefulEmoji.svg" },
 ];

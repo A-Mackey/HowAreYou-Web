@@ -1,5 +1,4 @@
 .sign-in-button-container {
-  width: 200px;
   height: 40px;
 }
 
@@ -20,6 +19,13 @@
 
   display: flex;
   align-items: center;
+
+  padding-right: 15px;
+
+  transition: 0.3s;
+  &:hover {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  }
 }
 
 .sign-in-button-image {

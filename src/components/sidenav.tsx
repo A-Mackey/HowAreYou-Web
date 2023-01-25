@@ -69,7 +69,6 @@ function SideNav(_props: any) {
           <button
             className="sidenav-user-icon-button"
             onClick={() => {
-              console.log("LOGOUT");
               logOut();
             }}>
             <img src={user.photoURL} alt="User" className="sidenav-user-icon" />

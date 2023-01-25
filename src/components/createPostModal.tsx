@@ -230,11 +230,11 @@ export function CreatePostModal(props: CreatePostModalProps) {
         {posted && (
           <div className="modal-section-6">
             {loading ? (
-              <NotificationBar text={loadingText} color={0} />
+              <NotificationBar text={loadingText} type="loading" />
             ) : successfulPost ? (
-              <NotificationBar text={successText} color={1} />
+              <NotificationBar text={successText} type="success" />
             ) : (
-              <NotificationBar text={failureText} color={-1} />
+              <NotificationBar text={failureText} type="failure" />
             )}
           </div>
         )}

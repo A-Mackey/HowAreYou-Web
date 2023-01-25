@@ -20,7 +20,7 @@ type APIContextType = {
   getUserGoals: () => Promise<string[]>;
   setUserGoals: (goals: string[]) => Promise<boolean>;
 
-  upsertUserData: (data: Object) => Promise<boolean>;
+  upsertUserData: (data: Object, email?: string) => Promise<boolean>;
 };
 
 const APIContext = createContext<APIContextType>({
@@ -41,7 +41,7 @@ const APIContext = createContext<APIContextType>({
     return false;
   },
 
-  upsertUserData: async (data: Object): Promise<boolean> => {
+  upsertUserData: async (data: Object, email?: string): Promise<boolean> => {
     return false;
   },
 });
@@ -166,13 +166,16 @@ export const APIContextProvider = ({ children }: { children: any }) => {
     return true;
   };
 
-  const upsertUserData = async (data: Object): Promise<boolean> => {
+  const upsertUserData = async (
+    data: Object,
+    email?: string
+  ): Promise<boolean> => {
     const db = getFirestore();
 
     const library_user: DocumentReference<DocumentData> = doc(
       db,
       "library_users",
-      user.email
+      user?.email ? user?.email : email
     );
 
     setDoc(library_user, data, { merge: true });

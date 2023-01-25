@@ -4,10 +4,12 @@ import Goals from "../components/sub-components/goals";
 import Loading from "../components/sub-components/loading";
 import { APIProvider } from "../context/APIContext";
 import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Profile(_props: any) {
   const { getUserGoals, getBasicUserData, upsertUserData } = APIProvider();
   const { user } = UserAuth();
+  const navigate = useNavigate();
 
   const [goals, setGoals] = useState<string[]>([]);
   const [firstName, setFirstName] = useState<string>("");
@@ -18,6 +20,10 @@ function Profile(_props: any) {
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
 
   useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+
     hydrateGoals();
     hydrateUser();
   }, [user]);
@@ -44,8 +50,6 @@ function Profile(_props: any) {
       email: email,
       email_newsletter: newsletter,
     };
-
-    console.log(newUserData);
 
     const response = await upsertUserData(newUserData);
 

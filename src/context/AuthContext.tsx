@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "./firebase";
+import { APIProvider } from "./APIContext";
 
 type UserAuthentication = {
   googleSignIn: any;
@@ -29,6 +30,7 @@ const AuthContext = createContext<UserAuthentication>({
 
 export const AuthContextProvider = ({ children }: { children: any }) => {
   const [user, setUser] = useState(null);
+  const { upsertUserData } = APIProvider();
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -42,9 +44,15 @@ export const AuthContextProvider = ({ children }: { children: any }) => {
   const googleSignInWithRedirect = (successFunc: any, errorFunc: any) => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(async (result) => {
         var loggedInUser = result.user;
         console.log(loggedInUser);
+        const newUserData = {
+          email: loggedInUser.email,
+          email_newsletter: true,
+        };
+
+        await upsertUserData(newUserData);
         successFunc();
       })
       .catch((error) => {
