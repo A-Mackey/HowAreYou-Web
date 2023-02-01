@@ -16,14 +16,29 @@ export const emotions = [
   { name: "bad", icon: "./icons/Emojis/badEmoji.svg" },
 
   { name: "angry", icon: "./icons/Emojis/angryEmoji.svg" },
+  { name: "annoyed", icon: "./icons/Emojis/annoyedEmoji.svg" },
+  { name: "cool", icon: "./icons/Emojis/coolEmoji.svg" },
+  { name: "goofy", icon: "./icons/Emojis/goofyEmoji.svg" },
   { name: "injured", icon: "./icons/Emojis/injuredEmoji.svg" },
+  { name: "inlove", icon: "./icons/Emojis/inloveEmoji.svg" },
+  { name: "laughing", icon: "./icons/Emojis/laughingEmoji.svg" },
+  { name: "lovey", icon: "./icons/Emojis/loveyEmoji.svg" },
   { name: "peaceful", icon: "./icons/Emojis/peacefulEmoji.svg" },
+  { name: "rich", icon: "./icons/Emojis/richEmoji.svg" },
   { name: "sick", icon: "./icons/Emojis/sickEmoji.svg" },
+  { name: "star", icon: "./icons/Emojis/starEmoji.svg" },
   { name: "tired", icon: "./icons/Emojis/tiredEmoji.svg" },
   { name: "worried", icon: "./icons/Emojis/worriedEmoji.svg" },
 ];
 
 export const goodEmotions = [
+  { name: "cool", icon: "./icons/Emojis/coolEmoji.svg" },
+  { name: "goofy", icon: "./icons/Emojis/goofyEmoji.svg" },
   { name: "good", icon: "./icons/Emojis/goodEmoji.svg" },
+  { name: "inlove", icon: "./icons/Emojis/inloveEmoji.svg" },
+  { name: "laughing", icon: "./icons/Emojis/laughingEmoji.svg" },
+  { name: "lovey", icon: "./icons/Emojis/loveyEmoji.svg" },
   { name: "peaceful", icon: "./icons/Emojis/peacefulEmoji.svg" },
+  { name: "rich", icon: "./icons/Emojis/richEmoji.svg" },
+  { name: "star", icon: "./icons/Emojis/starEmoji.svg" },
 ];

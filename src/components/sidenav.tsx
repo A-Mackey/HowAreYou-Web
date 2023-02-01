@@ -8,12 +8,15 @@ function SideNav(_props: any) {
   const { user, googleSignIn, logOut } = UserAuth();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [display, setDisplay] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("USER", user);
+    setDisplay(user !== null);
   }, [user]);
 
-  return (
+  const hidden = <></>;
+  const visible = (
     <div className="sidenav-container">
       {showModal && (
         <CreatePostModal
@@ -77,6 +80,12 @@ function SideNav(_props: any) {
       </div>
     </div>
   );
+
+  if (display) {
+    return visible;
+  } else {
+    return hidden;
+  }
 }
 
 export default SideNav;
